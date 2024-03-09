@@ -1,4 +1,4 @@
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -22,9 +22,9 @@ const mysql = require("mysql2/promise");
 
 async function getConnection() {
   const connection = await mysql.createConnection({
-    host: "sql.freedb.tech",
-    database: "freedb_Home Helpers",
-    user: "freedb_HomeHelpers",
+    host: process.env.MYSQL_HOST,
+    database: process.env.MYSQL_SCHEMA,
+    user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASS,
   });
   await connection.connect();
@@ -35,4 +35,3 @@ async function getConnection() {
 
   return connection;
 }
-
