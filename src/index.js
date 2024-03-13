@@ -42,66 +42,50 @@ app.listen(port, () => {
 
 // DEFINIR ENDPOINTS
 
-// Crear proyectos
+
+// Listar proyectos (GET)
+
+app.get(`/api/projectCard`, async (req, res) => {
+
+  // SELECT listar todos los proyectos  <- JOIN
+
+  res.json();  // -> dataResponse en React (fetch cd carga la pagina del listado)
+});
+
+
+// Crear proyectos (POST)
+
 app.post(`/api/projectCard`, async (req, res) => {
 
-  //  Datos vienen req.body
+  if( req.body.autor === '' ) {
+    res.json({success: false, error: 'La autora es un campo obligarotio'});
 
-//   console.log('Ha llamado al POST!');
-//   console.log(req.body);
+    return;
+  }
 
-//   // 1. Conectar a la bbdd
+  const conn = await getConnection();
 
-   const conn = await getConnection();
+  // INSERT -> autor  <- req.body.autor, req.body.job, 
 
-//   // 2. Insertar los datos de la autora  Authors
+  // result.insertId 
 
-   const insertAuthor = `
-   INSERT authors (autor, job, image)
-     VALUES (?, ?, ?)`;
+  // INSERT -> project (name, slogan.... result.insertId)
 
-  const [resultsInsertAuthor] = await conn.execute(
-    insertAuthor,
-     [req.body.autor, req.body.job, req.body.image]);
+  // result.insertId -> idProject
 
-//   // 3. Recupero el id de Authors
+  conn.end();
 
-//   console.log(resultsInsertAuthor.insertId);
-
-  const fkAuthor = resultsInsertAuthor.insertId;
-
-//   // 4. Insertar el proyecto Projects(fkAuthors)
-
-  const insertProject = `
-   INSERT projects (name, slogan, repo, demo, technologies, \`desc\`, photo, fkAuthor)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
-
-  const [resultsInsertProject] = await conn.execute(
-     insertProject,
-    [req.body.name, req.body.slogan, req.body.repo, req.body.demo, req.body.technologies, req.body.desc, req.body.photo, fkAuthor]
-   );
-
-//   // 5. Recupero el id de Projects
-
-   const idProject = resultsInsertProject.insertId
-
-//   // 6. Cierro al conexion
-
-   conn.end();
-
-//   // 7. Devuelvo el json
-
-   res.json({
-     success: true,
-     cardURL: `http://localhost:${port}/projectCard/${idProject}`
-   });
-
- });
-
-
-app.get("/", function (req, res) {
-  res.send("Hello World!");
+  res.json({success:true, cardURL:`http://localhost:3000/card/${idProject}`});  // -> dataResponse en React (fetch que lanza cd hacemos click en el botn de form)
 });
+
+
+// Mostar HTML de una tarjeta
+
+app.get('/card/:id', (req, res) => {
+  //
+  //res.render('');
+});
+
 
 app.get("*", function (req, res) {
   res.status(404).send("Página no encontrada");

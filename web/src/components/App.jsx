@@ -47,7 +47,7 @@ function App() {
   };
 
   const handleFetchCreate = () => {
-    fetch("https://dev.adalab.es/api/projectCard", {
+    fetch("http://localhost:3000/api/projectCard", {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
