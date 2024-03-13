@@ -13,7 +13,7 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json({ limit: "25mb" }));
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 
 async function getConnection() {
@@ -46,6 +46,21 @@ app.listen(port, () => {
 // Listar proyectos (GET)
 
 app.get(`/api/projectCard`, async (req, res) => {
+  
+  const conn = await getConnection();
+
+  const selectProjects = `
+  SELECT *
+    FROM autor a
+      JOIN proyecto p ON (a.idautor = p.fkautor)
+    WHERE p.idproyecto = ?;
+    `;
+
+    const [results] = await conn.query(selectProjects, [req.params.id]);
+
+
+
+  conn.end();
 
   // SELECT listar todos los proyectos  <- JOIN
 
@@ -58,7 +73,7 @@ app.get(`/api/projectCard`, async (req, res) => {
 app.post(`/api/projectCard`, async (req, res) => {
 
   if( req.body.autor === '' ) {
-    res.json({success: false, error: 'La autora es un campo obligarotio'});
+    res.json({success: false, error: 'La autora es un campo obligatorio'});
 
     return;
   }
@@ -81,9 +96,22 @@ app.post(`/api/projectCard`, async (req, res) => {
 
 // Mostar HTML de una tarjeta
 
-app.get('/card/:id', (req, res) => {
-  //
-  //res.render('');
+app.get('/card/:id', async (req, res) => {
+
+  const selectProjects = `
+  SELECT *
+    FROM autor a
+      JOIN proyecto p ON (a.idautor = p.fkautor)
+    WHERE p.idproyecto = ?;
+    `;
+
+    const [results] = await conn.query(selectProjects, [req.params.id]); 
+
+    conn.end();
+
+    const data = results[0];
+  
+  res.render('detail', data);
 });
 
 

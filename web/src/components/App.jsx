@@ -59,34 +59,43 @@ function App() {
         console.log(dataResponse);
         setResponseFetch(dataResponse);
       });
-  };
 
-  return (
-    <div>
-      <div className="container">
-        <Header />
+    // fetch("http://localhost:3000/api/projectCard")
+    //   .then((response) => response.json())
+    //   .then((dataResponse) => {
+    //     console.log("Llegó el otro Fetch!");
 
-        <Routes>
-          <Route path="/" element={<LandingApp />} />
-          <Route
-            path="/create"
-            element={
-              <Create
-                data={data}
-                changeData={changeData}
-                updateAvatarAuthor={updateAvatarAuthor}
-                updateAvatarProject={updateAvatarProject}
-                onSubmit={handleFetchCreate}
-                responseFetch={responseFetch}
-              />
-            }
-          />
-        </Routes>
+    //     console.log(dataResponse);
+    //     setResponseFetch(dataResponse);
+    //   });
 
-        <Footer />
+    return (
+      <div>
+        <div className="container">
+          <Header />
+
+          <Routes>
+            <Route path="/" element={<LandingApp />} />
+            <Route
+              path="/create"
+              element={
+                <Create
+                  data={data}
+                  changeData={changeData}
+                  updateAvatarAuthor={updateAvatarAuthor}
+                  updateAvatarProject={updateAvatarProject}
+                  onSubmit={handleFetchCreate}
+                  responseFetch={responseFetch}
+                />
+              }
+            />
+          </Routes>
+
+          <Footer />
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 }
 
 export default App;
