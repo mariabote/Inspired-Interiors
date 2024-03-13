@@ -1,20 +1,16 @@
-const cors = require("cors");
-const express = require("express");
+const cors = require('cors');
+const express = require('express');
 const path = require('path');
-
 
 const mysql = require('mysql2/promise');
 require('dotenv').config();
-
-
 
 const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(express.json({ limit: "25mb" }));
+app.use(express.json({ limit: '25mb' }));
 app.set('view engine', 'ejs');
-
 
 async function getConnection() {
   const connection = await mysql.createConnection({
@@ -32,21 +28,15 @@ async function getConnection() {
   return connection;
 }
 
-
-
-
 app.listen(port, () => {
   console.log(`Servidor iniciado escuchando en http://localhost:${port}`);
 });
 
-
 // DEFINIR ENDPOINTS
-
 
 // Listar proyectos (GET)
 
 app.get(`/api/projectCard`, async (req, res) => {
-  
   const conn = await getConnection();
 
   const selectProjects = `
@@ -56,33 +46,29 @@ app.get(`/api/projectCard`, async (req, res) => {
     WHERE p.idproyecto = ?;
     `;
 
-    const [results] = await conn.query(selectProjects, [req.params.id]);
-
-
+  const [results] = await conn.query(selectProjects, [req.params.id]);
 
   conn.end();
 
   // SELECT listar todos los proyectos  <- JOIN
 
-  res.json();  // -> dataResponse en React (fetch cd carga la pagina del listado)
+  res.json({ success: true, cardURL: `http://localhost:${port}/projectCard` }); // -> dataResponse en React (fetch cd carga la pagina del listado)
 });
-
 
 // Crear proyectos (POST)
 
 app.post(`/api/projectCard`, async (req, res) => {
-
-  if( req.body.autor === '' ) {
-    res.json({success: false, error: 'La autora es un campo obligatorio'});
+  if (req.body.autor === '' || req.body.job === '' || req.body.photo === '') {
+    res.json({ success: false, error: 'Todos los campos son obligatorios' });
 
     return;
   }
 
   const conn = await getConnection();
 
-  // INSERT -> autor  <- req.body.autor, req.body.job, 
+  // INSERT -> autor  <- req.body.autor, req.body.job,
 
-  // result.insertId 
+  // result.insertId
 
   // INSERT -> project (name, slogan.... result.insertId)
 
@@ -90,14 +76,15 @@ app.post(`/api/projectCard`, async (req, res) => {
 
   conn.end();
 
-  res.json({success:true, cardURL:`http://localhost:3000/card/${idProject}`});  // -> dataResponse en React (fetch que lanza cd hacemos click en el botn de form)
+  res.json({
+    success: true,
+    cardURL: `http://localhost:3000/card/${idProject}`,
+  }); // -> dataResponse en React (fetch que lanza cd hacemos click en el botn de form)
 });
-
 
 // Mostar HTML de una tarjeta
 
 app.get('/card/:id', async (req, res) => {
-
   const selectProjects = `
   SELECT *
     FROM autor a
@@ -105,20 +92,15 @@ app.get('/card/:id', async (req, res) => {
     WHERE p.idproyecto = ?;
     `;
 
-    const [results] = await conn.query(selectProjects, [req.params.id]); 
+  const [results] = await conn.query(selectProjects, [req.params.id]);
 
-    conn.end();
+  conn.end();
 
-    const data = results[0];
-  
+  const data = results[0];
+
   res.render('detail', data);
 });
 
-
-app.get("*", function (req, res) {
-  res.status(404).send("Página no encontrada");
+app.get('*', function (req, res) {
+  res.status(404).send('Página no encontrada');
 });
-
-
-
-
