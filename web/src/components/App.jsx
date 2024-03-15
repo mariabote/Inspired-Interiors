@@ -46,7 +46,8 @@ function App() {
     setData(clonData);
   };
 
-  fetch("http://localhost:3000/api/projectCard")
+  /*useEffect(() => {
+    fetch("http://localhost:3000/api/projectCard")
     .then((response) => response.json())
     .then((dataResponse) => {
       console.log("Llegó el otro Fetch!");
@@ -54,6 +55,7 @@ function App() {
       console.log(dataResponse);
       setResponseFetch(dataResponse);
     });
+  },[])*/
 
   const handleFetchCreate = () => {
     fetch("http://localhost:3000/api/projectCard", {
@@ -68,33 +70,32 @@ function App() {
         console.log(dataResponse);
         setResponseFetch(dataResponse);
       });
-
-    return (
-      <div>
-        <div className="container">
-          <Header />
-
-          <Routes>
-            <Route path="/" element={<LandingApp />} />
-            <Route
-              path="/create"
-              element={
-                <Create
-                  data={data}
-                  changeData={changeData}
-                  updateAvatarAuthor={updateAvatarAuthor}
-                  updateAvatarProject={updateAvatarProject}
-                  onSubmit={handleFetchCreate}
-                  responseFetch={responseFetch}
-                />
-              }
-            />
-          </Routes>
-
-          <Footer />
-        </div>
-      </div>
-    );
   };
+  return (
+    <div>
+      <div className="container">
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<LandingApp />} />
+          <Route
+            path="/create"
+            element={
+              <Create
+                data={data}
+                changeData={changeData}
+                updateAvatarAuthor={updateAvatarAuthor}
+                updateAvatarProject={updateAvatarProject}
+                onSubmit={handleFetchCreate}
+                responseFetch={responseFetch}
+              />
+            }
+          />
+        </Routes>
+
+        <Footer />
+      </div>
+    </div>
+  );
 }
 export default App;

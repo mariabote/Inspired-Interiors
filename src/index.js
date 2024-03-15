@@ -67,8 +67,13 @@ WHERE p.idproyecto = 2;
 
 app.post(`/api/projectCard`, async (req, res) => {
   if (req.body.autor === "" || req.body.job === "" || req.body.photo === "") {
-    res.json({ success: false, error: "Todos los campos son obligatorios" });
+    res.json({ success: false, error: "Todos los campos de la autora son obligatorios" });
 
+    
+    return;
+  }
+  if (req.body.name === "" || req.body.slogan === "" || req.body.technologies === ""|| req.body.image === "" || req.body.demo === "" || req.body.repo === "") {
+    res.json({ success: false, error: "Todos los campos del proyecto son obligatorios" });
     return;
   }
 
@@ -93,7 +98,7 @@ app.post(`/api/projectCard`, async (req, res) => {
   const fkAutor = resultsInsertAutor.insertId;
 
   const insertProject = `
-  INSERT projects (name, slogan, repo, demo, technologies, \`desc\`, image, fkAutor)
+  INSERT proyecto (name, slogan, repo, demo, technologies, \`desc\`, image, fkAutor)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
 
   const [resultsInsertProject] = await conn.execute(insertProject, [
