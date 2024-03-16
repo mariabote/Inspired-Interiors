@@ -44,7 +44,7 @@ SELECT *
 FROM autor a
 JOIN proyecto p 
 ON (a.idautor = p.fkautor)
-WHERE p.idproyecto = 2;
+WHERE p.idproyecto = ?;
 `;
 
   // const selectProjects = `
@@ -67,13 +67,25 @@ WHERE p.idproyecto = 2;
 
 app.post(`/api/projectCard`, async (req, res) => {
   if (req.body.autor === "" || req.body.job === "" || req.body.photo === "") {
-    res.json({ success: false, error: "Todos los campos de la autora son obligatorios" });
+    res.json({
+      success: false,
+      error: "Todos los campos de la autora son obligatorios",
+    });
 
-    
     return;
   }
-  if (req.body.name === "" || req.body.slogan === "" || req.body.technologies === ""|| req.body.image === "" || req.body.demo === "" || req.body.repo === "") {
-    res.json({ success: false, error: "Todos los campos del proyecto son obligatorios" });
+  if (
+    req.body.name === "" ||
+    req.body.slogan === "" ||
+    req.body.technologies === "" ||
+    req.body.image === "" ||
+    req.body.demo === "" ||
+    req.body.repo === ""
+  ) {
+    res.json({
+      success: false,
+      error: "Todos los campos del proyecto son obligatorios",
+    });
     return;
   }
 
@@ -128,7 +140,8 @@ app.post(`/api/projectCard`, async (req, res) => {
 
 // Mostar HTML de una tarjeta
 
-app.get("/card/:id", async (req, res) => {
+app.get("/projectCard/:id", async (req, res) => {
+  const conn = await getConnection();
   const selectProjects = `
   SELECT *
     FROM autor a

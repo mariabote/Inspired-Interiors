@@ -46,16 +46,27 @@ function App() {
     setData(clonData);
   };
 
-  /*useEffect(() => {
+  useEffect(() => {
     fetch("http://localhost:3000/api/projectCard")
-    .then((response) => response.json())
-    .then((dataResponse) => {
-      console.log("Llegó el otro Fetch!");
+      .then((response) => response.json())
+      .then((dataResponse) => {
+        console.log("Llegó el otro Fetch!");
 
-      console.log(dataResponse);
-      setResponseFetch(dataResponse);
-    });
-  },[])*/
+        console.log(dataResponse);
+        // setResponseFetch(dataResponse);
+      });
+  }, []);
+
+  // const handleFetchClick = () => {
+  //   fetch("http://localhost:3000/api/projectCard/:id")
+  //     .then((response) => response.json())
+  //     .then((dataResponse) => {
+  //       console.log("Llegó Fetch Click");
+
+  //       console.log(dataResponse);
+  //       setResponseFetch(dataResponse);
+  //     });
+  // };
 
   const handleFetchCreate = () => {
     fetch("http://localhost:3000/api/projectCard", {
