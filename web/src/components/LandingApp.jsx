@@ -63,7 +63,7 @@ function LandingApp(renderProject) {
             <div className="projectImage"></div>
             <div className="card_landing">
               {renderProjectList}
-              <article className="card">
+              {/* <article className="card">
                 <h2 className="card__projectTitle">
                   <span className="card__projectTitle--text">
                     Personal project card
@@ -185,7 +185,7 @@ function LandingApp(renderProject) {
                     </a>
                   </div>
                 </div>
-              </article>
+              </article> */}
             </div>
           </section>
         </main>
