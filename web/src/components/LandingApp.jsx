@@ -1,10 +1,12 @@
-import '../scss/App.scss';
-import { Link } from 'react-router-dom';
+import "../scss/App.scss";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function LandingApp(renderProject) {
+function LandingApp({ renderProject }) {
   if (!Array.isArray(renderProject)) {
     renderProject = [];
   }
+
   const renderProjectList = renderProject.map((project) => {
     return (
       <article className="card" key={project.id}>
@@ -193,5 +195,9 @@ function LandingApp(renderProject) {
     </div>
   );
 }
+
+LandingApp.propTypes = {
+  renderProject: PropTypes.array.isRequired,
+};
 
 export default LandingApp;
