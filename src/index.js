@@ -136,7 +136,7 @@ app.post(`/api/projectCard`, async (req, res) => {
 
   res.json({
     success: true,
-    cardURL: `http://localhost${port}/projectCard/${idProject}`,
+    cardURL: `http://localhost:${port}/projectCard/${idProject}`,
   }); // -> dataResponse en React (fetch que lanza cd hacemos click en el botn de form)
 });
 
