@@ -49,7 +49,7 @@ function LandingApp({ renderProject }) {
 
   return (
     <div>
-      <div className="container">
+      <div>
         <main className="main_landing">
           <section className="hero">
             <h2 className="title">HomeHelpers</h2>

@@ -79,6 +79,14 @@ fieldset {
 .container {
   padding: 22px 22px 0 22px;
   background-color: #032a42;
+  height: 100vh;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 .header {
