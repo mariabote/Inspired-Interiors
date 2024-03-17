@@ -8,16 +8,11 @@ function Header() {
       >
         <img
           className="header__companyLogo"
-          src="./images/favicon.png"
+          src="./images/favicon(!).png"
           alt="Logo proyectos molones"
         />
         <h1 className="header__title">HomeHelpers</h1>
       </a>
-      <img
-        className="logoSponsor"
-        src="./images/logo.jpeg"
-        alt="Logo HomeHelpers"
-      />
     </header>
   );
 }
