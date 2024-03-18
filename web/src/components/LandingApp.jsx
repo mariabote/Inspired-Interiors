@@ -1,6 +1,6 @@
-import "../scss/App.scss";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import '../scss/App.scss';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function LandingApp({ renderProject }) {
   if (!Array.isArray(renderProject)) {
@@ -54,7 +54,7 @@ function LandingApp({ renderProject }) {
           <section className="hero">
             <h2 className="title">HomeHelpers</h2>
             <p className="hero__text">
-            Encuentra con nosotros la tranquilidad que necesitas para tu hogar
+              Encuentra con nosotros la tranquilidad que necesitas para tu hogar
             </p>
             <Link className="button--link" to="/create">
               Nuevo proyecto
@@ -63,132 +63,7 @@ function LandingApp({ renderProject }) {
 
           <section className="preview">
             <div className="projectImage"></div>
-            <div className="card_landing">
-              {renderProjectList}
-              {/* <article className="card">
-                <h2 className="card__projectTitle">
-                  <span className="card__projectTitle--text">
-                    Personal project card
-                  </span>
-                </h2>
-                <div className="card__author">
-                  <div className="card__authorPhoto"></div>
-                  <p className="card__job">Full stack Developer</p>
-                  <h3 className="card__name">Emmelie Bjôrklund</h3>
-                </div>
-                <div className="card__project">
-                  <h3 className="card__slogan">Elegant Workspace</h3>
-                  <p className="card__slogan">Diseños Exclusivos</p>
-                  <h3 className="card__descriptionTitle">
-                    Product description
-                  </h3>
-                  <p className="card__description">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Nulla, quos? Itaque, molestias eveniet laudantium adipisci
-                    vitae ratione
-                  </p>
-                  <div className="card__technicalInfo">
-                    <p className="card__technologies">React JS - HTML - CSS</p>
-                    <a
-                      className="icon icon__www"
-                      href="#"
-                      title="Haz click para ver el proyecto online"
-                    >
-                      Web link
-                    </a>
-                    <a
-                      className="icon icon__github"
-                      href="#"
-                      title="Haz click para ver el código del proyecto"
-                    >
-                      GitHub link
-                    </a>
-                  </div>
-                </div>
-              </article>
-              <article className="card">
-                <h2 className="card__projectTitle">
-                  <span className="card__projectTitle--text">
-                    Personal project card
-                  </span>
-                </h2>
-                <div className="card__author">
-                  <div className="card__authorPhoto"></div>
-                  <p className="card__job">Full stack Developer</p>
-                  <h3 className="card__name">Emmelie Bjôrklund</h3>
-                </div>
-                <div className="card__project">
-                  <h3 className="card__slogan">Elegant Workspace</h3>
-                  <p className="card__slogan">Diseños Exclusivos</p>
-                  <h3 className="card__descriptionTitle">
-                    Product description
-                  </h3>
-                  <p className="card__description">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Nulla, quos? Itaque, molestias eveniet laudantium adipisci
-                    vitae ratione
-                  </p>
-                  <div className="card__technicalInfo">
-                    <p className="card__technologies">React JS - HTML - CSS</p>
-                    <a
-                      className="icon icon__www"
-                      href="#"
-                      title="Haz click para ver el proyecto online"
-                    >
-                      Web link
-                    </a>
-                    <a
-                      className="icon icon__github"
-                      href="#"
-                      title="Haz click para ver el código del proyecto"
-                    >
-                      GitHub link
-                    </a>
-                  </div>
-                </div>
-              </article>
-              <article className="card">
-                <h2 className="card__projectTitle">
-                  <span className="card__projectTitle--text">
-                    Personal project card
-                  </span>
-                </h2>
-                <div className="card__author">
-                  <div className="card__authorPhoto"></div>
-                  <p className="card__job">Full stack Developer</p>
-                  <h3 className="card__name">Emmelie Bjôrklund</h3>
-                </div>
-                <div className="card__project">
-                  <h3 className="card__slogan">Elegant Workspace</h3>
-                  <p className="card__slogan">Diseños Exclusivos</p>
-                  <h3 className="card__descriptionTitle">
-                    Product description
-                  </h3>
-                  <p className="card__description">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Nulla, quos? Itaque, molestias eveniet laudantium adipisci
-                    vitae ratione
-                  </p>
-                  <div className="card__technicalInfo">
-                    <p className="card__technologies">React JS - HTML - CSS</p>
-                    <a
-                      className="icon icon__www"
-                      href="#"
-                      title="Haz click para ver el proyecto online"
-                    >
-                      Web link
-                    </a>
-                    <a
-                      className="icon icon__github"
-                      href="#"
-                      title="Haz click para ver el código del proyecto"
-                    >
-                      GitHub link
-                    </a>
-                  </div>
-                </div>
-              </article> */}
-            </div>
+            <div className="card_landing">{renderProjectList}</div>
           </section>
         </main>
       </div>
