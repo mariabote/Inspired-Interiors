@@ -1,6 +1,6 @@
-import '../scss/App.scss';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import "../scss/App.scss";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function LandingApp({ renderProject }) {
   if (!Array.isArray(renderProject)) {
