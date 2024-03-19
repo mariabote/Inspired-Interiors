@@ -1,9 +1,13 @@
-@import 'core/reset';
+@import "core/reset";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  background-color: #032a42;
 }
 
 fieldset {
@@ -17,7 +21,7 @@ fieldset {
   --color-black-80: rgba(0, 0, 0, 0.8);
   --color-greyish-brown: #505050;
   --color-greyish-brown-88: rgba(62, 62, 62, 0.88);
-  --color-dusk: #d1e2f3;
+  --color-dusk: #36536d;
   --color-greyish-brown-two: #575757;
   --color-dark: #302c42;
   --color-warm-grey: #909090;
@@ -27,23 +31,23 @@ fieldset {
 
   /* FONTS */
 
-  --font-title-brand: 300 1.4rem 'Poppins', sans-serif;
-  --font-title-biggest: bold 3rem 'Montserrat', sans-serif;
-  --font-title-big: bold 2rem 'Montserrat', sans-serif;
-  --font-title-medium: 300 1.5rem 'Montserrat', sans-serif;
-  --font-text-big: normal 1.2rem 'Montserrat', sans-serif;
-  --font-normal: normal 10px 'Montserrat', sans-serif;
-  --font-button: bold 1rem 'Montserrat', sans-serif;
-  --font-card-text: 300 0.8rem 'Poppins', sans-serif;
-  --font-card-section: 300 0.8rem 'Poppins', sans-serif;
-  --font-card-title: 500 1.2rem 'Poppins', sans-serif;
-  --font-card-subtitle: 400 1.1rem 'Poppins', sans-serif;
-  --font-card-tech: 500 1rem 'Catamaran', sans-serif;
+  --font-title-brand: 300 1.4rem "Poppins", sans-serif;
+  --font-title-biggest: bold 3rem "Montserrat", sans-serif;
+  --font-title-big: bold 2rem "Montserrat", sans-serif;
+  --font-title-medium: 300 1.5rem "Montserrat", sans-serif;
+  --font-text-big: normal 1.2rem "Montserrat", sans-serif;
+  --font-text: normal 1rem "Montserrat", sans-serif;
+  --font-normal: normal 10px "Montserrat", sans-serif;
+  --font-button: bold 0.9rem "Montserrat", sans-serif;
+  --font-card-text: 300 0.8rem "Poppins", sans-serif;
+  --font-card-section: 300 0.8rem "Poppins", sans-serif;
+  --font-card-title: 500 1.2rem "Poppins", sans-serif;
+  --font-card-subtitle: 400 1.1rem "Poppins", sans-serif;
+  --font-card-tech: 500 1rem "Catamaran", sans-serif;
 }
 
 :root {
   font: var(--font-normal);
-  /* font-size: 10px; */
   color: var(--color-white);
 }
 
@@ -79,15 +83,15 @@ fieldset {
 .container {
   padding: 22px 22px 0 22px;
   background-color: #032a42;
-  height: 100vh;
+  height: 100%;
 }
 
 .footer {
+  width: 100vw;
   background-color: #032a42;
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
 }
 
 .header {
@@ -106,6 +110,7 @@ fieldset {
 
 .header .header__companyLogo {
   height: 31px;
+  width: auto;
   color: var(--color-white);
 }
 
@@ -121,25 +126,24 @@ fieldset {
   color: var(--color-white);
 }
 
+.hero {
+  margin-bottom: 3rem;
+}
+
 @media screen and (min-width: 768px) {
   .main {
     margin-inline: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    column-gap: 8rem;
+    margin: 0 100px 100px 100px;
   }
 
   .main_landing {
     max-width: 980px;
     margin-inline: auto;
   }
-}
 
-.hero {
-  margin-bottom: 3rem;
-}
-
-@media screen and (min-width: 768px) {
   .hero {
     grid-column: span 2;
   }
@@ -167,15 +171,13 @@ fieldset {
 }
 
 .preview .projectImage {
+  width: 590px;
+  height: auto;
+  object-fit: contain;
   aspect-ratio: 1 / 1;
-  outline: solid 1px pink;
-
-  background-image: url('../images/logo.jpeg');
+  background-image: url("../images/logo.jpeg");
   background-position: top center;
   background-size: cover;
-}
-
-.projectImage {
   border-radius: 20px;
 }
 
@@ -200,7 +202,6 @@ fieldset {
   border-radius: 20px;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-style: solid;
   border-width: 1px;
   border-image-source: linear-gradient(
     to bottom,
@@ -208,14 +209,6 @@ fieldset {
     rgba(0, 0, 0, 0)
   );
   border-image-slice: 1;
-  // background-image: linear-gradient(
-  //     to bottom,
-  //     var(--color-white),
-  //     var(--color-white)
-  //   ),
-  //   linear-gradient(to bottom, var(--color-white) 0%, rgba(0, 0, 0, 0));
-  // background-origin: border-box;
-  // background-clip: content-box, border-box;
 }
 
 .card .card__projectTitle {
@@ -229,7 +222,7 @@ fieldset {
 }
 
 .card .card__projectTitle::before {
-  content: '';
+  content: "";
   position: absolute;
   top: calc(50% - 1px);
   bottom: calc(50% - 1px);
@@ -257,15 +250,16 @@ fieldset {
 .card .card__author {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
+  align-items: left;
+  margin-left: 20px;
+  gap: 5px;
 }
 
 .card .card__authorPhoto {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-image: url('../images/avatar2.webp');
+  background-image: url("../images/avatar2.webp");
   background-position: center;
   background-size: cover;
   margin-bottom: 0.8rem;
@@ -277,8 +271,6 @@ fieldset {
 
 .card .card__name {
   font: var(--font-card-title);
-  margin-bottom: 0.2rem;
-  margin-left: 0.8rem;
 }
 
 .card .card__project {
@@ -313,6 +305,10 @@ fieldset {
 }
 
 @media only screen and (max-width: 480px) {
+  .main {
+    margin: 0 0 100px 0;
+  }
+
   .card {
     width: 280px;
     height: 180px;
@@ -351,6 +347,11 @@ fieldset {
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .main {
+    margin: 0;
+    column-gap: 0.5rem;
+  }
+
   .preview {
     display: flex;
     flex-direction: column;
@@ -375,6 +376,7 @@ fieldset {
     flex-direction: column;
     align-items: center;
   }
+
   .preview {
     display: flex;
     flex-direction: column;
@@ -396,8 +398,6 @@ fieldset {
 /* FORM */
 
 .addForm {
-  margin: 0 20px 5px 20px;
-
   box-shadow: 2px 4px 4px 0 rgba(0, 0, 0, 0.25);
   border: solid 1px rgba(0, 0, 0, 0);
   background-image: radial-gradient(
@@ -425,7 +425,7 @@ fieldset {
 }
 
 .addForm .addForm__title:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 100%;
   right: 0;
@@ -455,35 +455,25 @@ fieldset {
   width: calc(100% - 20px);
   margin: 10px auto;
 
-  padding: 8.5px 16px 8.5px 16px;
+  padding: 10px 16px;
   border-radius: 40px;
   border: solid 2px var(--color-white);
 
-  color: #032a42;
+  color: white;
   background-color: transparent;
 
-  font: var(--font-normal);
+  font: var(--font-text);
 }
 
 .addForm .addForm__input::placeholder {
-  color: #f0d8b6;
-  font-weight: bolder;
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  text-shadow: #000000;
-}
-
-.addForm__input::placeholder {
-  text-align: center;
-  text-shadow: 1px 1px 2px black;
+  color: white;
+  font-size: var(--font-text);
 }
 
 .addForm .addForm__group--upload {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 25px;
 }
 
 .addForm .addForm__hidden {
@@ -512,10 +502,6 @@ fieldset {
   .logoSponsor {
     margin: 1rem;
   }
-}
-
-.addForm {
-  width: 960px;
 }
 
 /* COMPONENTS */
@@ -549,11 +535,6 @@ fieldset {
   border-image-slice: 1;
   border-radius: 10rem;
   background-color: #d1e2f3;
-  /*
-  background-image: linear-gradient(to bottom, var(--color-dark-lilac), var(--color-dark-lilac)), linear-gradient(to bottom, #2a2a2a 0%, rgba(0, 0, 0, 0));
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  */
 }
 
 .button {
@@ -562,7 +543,7 @@ fieldset {
   max-width: 150px;
 
   margin: 8px;
-  padding: 5px 18px;
+  padding: 10px 18px;
   color: #032a42;
   font: var(--font-button);
   text-transform: none;
@@ -570,7 +551,7 @@ fieldset {
   text-align: center;
 
   border-radius: 40px;
-  background-image: linear-gradient(to right, #b3926f -2%, #f0d8b6 98%);
+  background-image: linear-gradient(to right, #5e97c3 -2%, #ccd7f2 98%);
 
   cursor: pointer;
 }
@@ -581,7 +562,7 @@ fieldset {
 
   margin-inline: auto;
   margin-block: 8px;
-  padding: 5px 18px;
+  padding: 10px 18px;
   color: #032a42;
   font: var(--font-button);
   text-transform: none;
@@ -590,7 +571,7 @@ fieldset {
 
   border-radius: 40px;
   background-color: transparent;
-  background-image: linear-gradient(to right, #b3926f -2%, #f0d8b6 98%);
+  background-image: linear-gradient(to right, #5e97c3 -2%, #ccd7f2 98%);
   cursor: pointer;
 }
 
@@ -610,9 +591,9 @@ fieldset {
 }
 
 .icon__www {
-  background-image: url('../images/icons/globe-solid.svg');
+  background-image: url("../images/icons/globe-solid.svg");
 }
 
 .icon__github {
-  background-image: url('../images/icons/github.svg');
+  background-image: url("../images/icons/github.svg");
 }
